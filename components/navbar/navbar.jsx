@@ -1,4 +1,4 @@
-import Styles from 'styles/Navbar.module.css'
+import Styles from 'components/navbar/Navbar.module.css'
 import SvgShoppingCart from 'svg/ShoppingCart'
 
 export default function Navbar() {
