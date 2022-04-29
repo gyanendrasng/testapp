@@ -2,7 +2,8 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import CardActions from '@mui/material/CardActions';
-import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import Add from '@mui/icons-material/Add';
 
 interface Props {
   id: number;
@@ -14,12 +15,6 @@ interface Props {
 }
 export default function Cards(props: Props) {
   return (
-    // <div className={Styles.card}>
-    //   <div className={Styles.image}>
-    //     <Image width="fill" height="fill" src={props.image} alt="nope" />
-    //   </div>
-    //   <div></div>
-    // </div>
     <Card sx={{ maxWidth: 250 }}>
       <CardMedia
         component="img"
@@ -34,9 +29,10 @@ export default function Cards(props: Props) {
         {props.description}
       </Typography>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
+        <Typography>$ {props.price}</Typography>
+        <IconButton aria-label="add">
+          <Add />
+        </IconButton>
       </CardActions>
     </Card>
   );
