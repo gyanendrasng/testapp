@@ -1,0 +1,14 @@
+.navbar{
+    height: 8vh;
+    background-color: grey;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.7rem;
+    align-items: center;
+    position: absolute;
+    width: 100vw;
+}
+
+.cartIcon{
+    margin-right: 2rem;
+}
