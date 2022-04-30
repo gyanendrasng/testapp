@@ -17,11 +17,13 @@ type InitialStateType = {
   isOpenCartDrawer: boolean;
   isOpenMenuDrawer: boolean;
   isProductsFetching: boolean;
+  cartList: ProductType[];
 };
 
 const initialState = {
   products: [],
   shoppingCart: 0,
+  cartList: [],
   isOpenCartDrawer: false,
   isOpenMenuDrawer: false,
   isProductsFetching: false,

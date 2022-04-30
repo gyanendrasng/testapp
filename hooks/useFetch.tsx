@@ -1,7 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 
-const useFetch = (url, errorType, loadingTypeStart, loadingTypeStop) => {
+const useFetch = (
+  url: string,
+  errorType: string,
+  loadingTypeStart: string,
+  loadingTypeStop: string
+) => {
   const [data, setData] = useState(null);
   const { dispatch } = useContext(AppContext);
 

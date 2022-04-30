@@ -3,14 +3,13 @@ import * as React from 'react';
 import { useContext, useState } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { TOGGLE_CART_DRAWER } from '../../context/types';
-import productsData from '../../data/productsData';
 import CartFooter from './CartFooter';
 import CartHeader from './CartHeader';
 import CartProducts from './CartProducts';
 
 const CartDrawer: React.FunctionComponent<any> = () => {
   const {
-    state: { isOpenCartDrawer },
+    state: { isOpenCartDrawer, cartList },
     dispatch,
   } = useContext(AppContext);
   const theme = useTheme();
@@ -39,7 +38,7 @@ const CartDrawer: React.FunctionComponent<any> = () => {
             <Box>
               <Collapse in={isOpen} timeout="auto" unmountOnExit>
                 <Box maxHeight="600px" py="0.5rem" sx={{ overflowY: 'auto' }}>
-                  <CartProducts products={productsData} />
+                  <CartProducts products={cartList} />
                 </Box>
               </Collapse>
             </Box>

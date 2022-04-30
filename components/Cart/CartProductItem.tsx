@@ -17,7 +17,7 @@ const CartProductItem: React.FunctionComponent<Props> = ({
   title,
   description,
   price,
-  img,
+  image,
 }) => {
   const theme = useTheme();
   const isMD = useMediaQuery(theme.breakpoints.down('md'));
@@ -45,7 +45,7 @@ const CartProductItem: React.FunctionComponent<Props> = ({
             >
               <Box
                 component="img"
-                src={img}
+                src={image}
                 width="100%"
                 height="100%"
                 alt={title}
