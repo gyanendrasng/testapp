@@ -5,7 +5,6 @@ import productsData from '../data/productsData';
 const Home: NextPage = () => {
   return (
     <Layout>
-      <h2>Welcome to home page</h2>
       <Products
         title="Grocery Deals"
         subTitle="Amazing deals on Grocery items"

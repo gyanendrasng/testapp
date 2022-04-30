@@ -1,24 +1,24 @@
 .sidebar {
-    transition: all 0.25s;
-    width: 70px;
-    z-index: 999;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
-  .sidebar:hover {
-    width: 250px;
-  }
-  .sidebar:hover .item {
-    height: 80px;
-    transition: all 0.5s;
-    cursor: pointer;
-  }
-  
-  .sidebar:hover .item .text {
-    display: block;
-  }
-  .sidebar .item .text:hover {
-    color: var(--white);
-  }
+  transition: all 0.25s;
+  width: 70px;
+  z-index: 999;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.sidebar:hover {
+  width: 250px;
+}
+.sidebar:hover .item {
+  height: 80px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.sidebar:hover .item .text {
+  display: block;
+}
+.sidebar .item .text:hover {
+  color: var(--white);
+}

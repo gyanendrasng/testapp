@@ -17,7 +17,7 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => {
 
       <Box flexGrow="1">
         <Header />
-        <Box px="2rem">{children}</Box>
+        <Box>{children}</Box>
       </Box>
     </Box>
   );

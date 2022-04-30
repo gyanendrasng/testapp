@@ -22,7 +22,7 @@ const Header: React.FunctionComponent<Props> = () => {
   const isMD = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Box bgcolor="var(--white)">
+    <Box bgcolor="var(--white)" borderBottom="1px solid var(--text-muted)">
       <Grid container>
         <Grid item xs={2} md={2}>
           {isMD && (
