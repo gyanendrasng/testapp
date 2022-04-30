@@ -5,18 +5,22 @@ import AppReducer from './AppReducer';
 
 type ProductType = {
   id: number;
-  name: string;
+  title: string;
+  description: string;
   price: number;
+  img: string;
 };
 
 type InitialStateType = {
   products: ProductType[];
   shoppingCart: number;
+  isOpenCartDrawer: boolean;
 };
 
 const initialState = {
   products: [],
   shoppingCart: 0,
+  isOpenCartDrawer: false,
 };
 
 const AppContext = createContext<InitialStateType>(initialState);
@@ -30,9 +34,7 @@ const AppProvider: React.FC<Props> = ({ children }) => {
 
   const value = { state, dispatch };
   return (
-    <AppContext.Provider value={value as InitialStateType}>
-      {children}
-    </AppContext.Provider>
+    <AppContext.Provider value={value as any}>{children}</AppContext.Provider>
   );
 };
 
