@@ -1,13 +1,17 @@
 import type { NextPage } from 'next';
-import Header from 'components/header/header';
-import styles from '../styles/Home.module.css';
-import CartDrawer from './cartdrawer';
-
+import Layout from '../components/Layout/Layout';
+import Products from '../components/Products/Products';
+import productsData from '../data/productsData';
 const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
-      <Header title="Home" />
-    </div>
+    <Layout>
+      <h2>Welcome to home page</h2>
+      <Products
+        title="Grocery Deals"
+        subTitle="Amazing deals on Grocery items"
+        products={productsData}
+      />
+    </Layout>
   );
 };
 
