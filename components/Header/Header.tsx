@@ -12,6 +12,9 @@ import {
   useTheme,
 } from '@mui/material';
 import * as React from 'react';
+import { useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
+import { TOGGLE_CART_DRAWER } from '../../context/types';
 import Brand from '../Common/Brand';
 type Props = {
   children?: JSX.Element | JSX.Element[];
@@ -20,6 +23,7 @@ type Props = {
 const Header: React.FunctionComponent<Props> = () => {
   const theme = useTheme();
   const isMD = useMediaQuery(theme.breakpoints.down('md'));
+  const { dispatch } = useContext(AppContext);
 
   return (
     <Box bgcolor="var(--white)" borderBottom="1px solid var(--text-muted)">
@@ -69,6 +73,8 @@ const Header: React.FunctionComponent<Props> = () => {
               width="100%"
               minWidth="80px"
               justifyContent="center"
+              sx={{ cursor: 'pointer' }}
+              onClick={() => dispatch({ type: TOGGLE_CART_DRAWER })}
             >
               <ShoppingBasketIcon />
               <Box width="0.25rem" />

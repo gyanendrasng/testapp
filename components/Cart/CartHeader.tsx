@@ -21,6 +21,7 @@ const CartHeader: React.FunctionComponent<Props> = ({
       p="2rem"
       sx={{ cursor: 'pointer' }}
       onClick={handleClickToggle}
+      borderBottom="1px solid var(--border)"
     >
       <Box display="flex" alignItems="center">
         <Box marginRight="1rem">
