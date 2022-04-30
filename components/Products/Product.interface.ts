@@ -3,7 +3,7 @@ interface Product {
   title: string;
   description: string;
   price: number;
-  img: string;
+  image: string;
 }
 
 export default Product;

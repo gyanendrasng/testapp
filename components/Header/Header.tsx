@@ -14,7 +14,7 @@ import {
 import * as React from 'react';
 import { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
-import { TOGGLE_CART_DRAWER } from '../../context/types';
+import { TOGGLE_CART_DRAWER, TOGGLE_MENU_DRAWER } from '../../context/types';
 import Brand from '../Common/Brand';
 type Props = {
   children?: JSX.Element | JSX.Element[];
@@ -31,7 +31,11 @@ const Header: React.FunctionComponent<Props> = () => {
         <Grid item xs={2} md={2}>
           {isMD && (
             <Box display="flex" alignItems="center" height="100%">
-              <IconButton color="inherit" size="large">
+              <IconButton
+                color="inherit"
+                size="large"
+                onClick={() => dispatch({ type: TOGGLE_MENU_DRAWER })}
+              >
                 <MenuIcon />
               </IconButton>
             </Box>

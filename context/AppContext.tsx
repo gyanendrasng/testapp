@@ -15,12 +15,16 @@ type InitialStateType = {
   products: ProductType[];
   shoppingCart: number;
   isOpenCartDrawer: boolean;
+  isOpenMenuDrawer: boolean;
+  isProductsFetching: boolean;
 };
 
 const initialState = {
   products: [],
   shoppingCart: 0,
   isOpenCartDrawer: false,
+  isOpenMenuDrawer: false,
+  isProductsFetching: false,
 };
 
 const AppContext = createContext<InitialStateType>(initialState);

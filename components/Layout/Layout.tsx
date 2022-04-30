@@ -2,6 +2,7 @@ import { Box, useMediaQuery, useTheme } from '@mui/material';
 import * as React from 'react';
 import CartDrawer from '../Cart/CartDrawer';
 import Header from '../Header/Header';
+import SidebarDrawer from '../Sidebar/Drawer/Drawer';
 import Sidebar from '../Sidebar/Sidebar';
 type Props = {
   children?: JSX.Element | JSX.Element[];
@@ -13,7 +14,7 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => {
 
   return (
     <Box display="flex" height="100%" bgcolor="var(--white-gray)">
-      {!isMD && <Sidebar />}
+      {isMD ? <SidebarDrawer /> : <Sidebar />}
       <CartDrawer />
       <Box flexGrow="1">
         <Header />

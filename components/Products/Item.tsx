@@ -1,6 +1,7 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import * as React from 'react';
 import { useState } from 'react';
+import getTrancateString from '../lib/getTrancateString';
 import Actions from './Actions';
 import styles from './Product.module.css';
 type Props = {
@@ -8,15 +9,14 @@ type Props = {
   title: string;
   description: string;
   price: number;
-  img: string;
+  image: string;
 };
-
 const Item: React.FunctionComponent<Props> = ({
   id,
   title,
   description,
   price,
-  img,
+  image,
 }) => {
   const [count, setCount] = useState(0);
   const handleClickToIncrease = () => {
@@ -28,50 +28,48 @@ const Item: React.FunctionComponent<Props> = ({
     }
   };
   return (
-    <Grid item xs={12} sm={6} md={4} lg={3}>
-      <Box p="2rem" border="1px solid var(--border)" className={styles.item}>
-        <Box position="absolute" right="0.5rem" top="0.5rem">
-          <Actions
-            count={count}
-            handleClickToIncrease={handleClickToIncrease}
-            handleClickToDecrease={handleClickToDecrease}
-          />
-        </Box>
+    <Box p="2rem" border="1px solid var(--border)" className={styles.item}>
+      <Box position="absolute" right="0.5rem" top="0.5rem">
+        <Actions
+          count={count}
+          handleClickToIncrease={handleClickToIncrease}
+          handleClickToDecrease={handleClickToDecrease}
+        />
+      </Box>
 
-        <Box p="1rem 3.5rem">
-          <Box
-            component="img"
-            src={img}
-            width="100%"
-            height="auto"
-            alt={title}
-          />
-        </Box>
-        <Box p="1rem">
-          <Typography variant="h6" color="var(--primary)">
-            {title}
-          </Typography>
+      <Box maxWidth="250px" p="1rem 3.5rem">
+        <Box
+          component="img"
+          src={image}
+          width="100%"
+          height="auto"
+          alt={title}
+        />
+      </Box>
+      <Box p="1rem">
+        <Typography variant="h6" color="var(--primary)">
+          {title}
+        </Typography>
+        <Typography
+          variant="h5"
+          color="var(--primary)"
+          sx={{ fontWeight: 'bold' }}
+        >
+          {price}{' '}
           <Typography
-            variant="h5"
-            color="var(--primary)"
+            variant="subtitle1"
+            component="span"
+            color="var(--text-muted)"
             sx={{ fontWeight: 'bold' }}
           >
-            {price}{' '}
-            <Typography
-              variant="subtitle1"
-              component="span"
-              color="var(--text-muted)"
-              sx={{ fontWeight: 'bold' }}
-            >
-              /lib
-            </Typography>
+            /lib
           </Typography>
-          <Typography component="span" color="var(--text-muted)">
-            {description}
-          </Typography>
-        </Box>
+        </Typography>
+        <Typography component="span" color="var(--text-muted)">
+          {getTrancateString(description, 60)}
+        </Typography>
       </Box>
-    </Grid>
+    </Box>
   );
 };
 export default Item;
