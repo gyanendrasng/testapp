@@ -15,8 +15,7 @@ const CartDrawer: React.FunctionComponent<any> = () => {
   const theme = useTheme();
   const isMD = useMediaQuery(theme.breakpoints.down('md'));
   const [isOpen, setOpen] = useState(true);
-  const { getTotalItems, getTotalAmountOfCost, getTotalProducts, getQtyById } =
-    useCart();
+  const { getTotalItems, getTotalAmountOfCost, getTotalProducts } = useCart();
   const handleClickToggle: any = () => {
     setOpen((value) => !value);
   };

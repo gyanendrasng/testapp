@@ -56,7 +56,7 @@ const useCart = () => {
     });
     return totalCost;
   };
-  // Product add to cart
+  // Product add to cart and update qty
   const addToCart: any = (product: any) => {
     const qty = getQtyById(product.id);
     if (!qty || qty === 0) {
@@ -68,7 +68,7 @@ const useCart = () => {
       increasedQtyById(product.id);
     }
   };
-  // Product remove from add to cart
+  // Product remove from add to cart and update qty
   const removeToCart: any = (id: number) => {
     const qty = getQtyById(id);
     if (!qty) {

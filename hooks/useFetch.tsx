@@ -5,7 +5,8 @@ const useFetch = (
   url: string,
   errorType: string,
   loadingTypeStart: string,
-  loadingTypeStop: string
+  loadingTypeStop: string,
+  option?: object
 ) => {
   const [data, setData] = useState(null);
   const { dispatch } = useContext(AppContext);
@@ -17,7 +18,7 @@ const useFetch = (
         type: loadingTypeStart,
       });
       try {
-        const res = await fetch(url);
+        const res = await fetch(url, option);
         const data = await res.json();
 
         // Loading Stopped
