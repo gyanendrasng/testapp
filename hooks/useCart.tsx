@@ -1,4 +1,9 @@
 import { useContext, useEffect } from 'react';
+import {
+  addNewProductToCartList,
+  deleteCartListProduct,
+  updateCartListProduct,
+} from '../apis/apis.cart';
 import { AppContext } from '../context/AppContext';
 import {
   ADD_TO_CART_LIST,
@@ -20,7 +25,13 @@ const useCart = () => {
       payload: cartListsSync,
     });
   }, []);
-
+  const getCartList: any = (id: number) => {
+    const cartList = state.cartList;
+    return cartList.map((item: any) => ({
+      productId: item.id,
+      quantity: item.qty,
+    }));
+  };
   // Get individual quantity of product
   const getQtyById: any = (id: number) => {
     const cartItem = state.cartList.find(
@@ -64,8 +75,16 @@ const useCart = () => {
         type: ADD_TO_CART_LIST,
         payload: product,
       });
+      // Updated: To add cart product into the Database via api call
+      addNewProductToCartList({
+        userId: product.id,
+        date: Date().toString(),
+        products: getCartList(),
+      });
     } else {
       increasedQtyById(product.id);
+      // Updated: To update cart product into the Database via api call
+      updateCartListProduct(product.id, getCartList());
     }
   };
   // Product remove from add to cart and update qty
@@ -81,8 +100,12 @@ const useCart = () => {
           id,
         },
       });
+      // Updated: To remove cart product into the Database via api call
+      deleteCartListProduct(id);
     } else {
       decreasedQtyById(id);
+      // Updated: To update cart product into the Database via api call
+      updateCartListProduct(id, getCartList());
     }
   };
   // Quanity increase by id
