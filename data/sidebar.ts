@@ -18,6 +18,7 @@ interface Item {
   activeIconSrc: any;
   text: string;
   active: boolean;
+  path: string;
 }
 
 const sidebarData: Item[] = [
@@ -26,42 +27,49 @@ const sidebarData: Item[] = [
     activeIconSrc: dairySrc,
     text: 'Dairy',
     active: true,
+    path: '/about',
   },
   {
     iconSrc: fishDarkSrc,
     activeIconSrc: fishSrc,
     text: 'Fish',
     active: false,
+    path: '/',
   },
   {
     iconSrc: matzaDarkSrc,
     activeIconSrc: matzaSrc,
     text: 'Matza',
     active: false,
+    path: '/',
   },
   {
     iconSrc: meatDarkSrc,
     activeIconSrc: meatSrc,
     text: 'Meat',
     active: false,
+    path: '/',
   },
   {
     iconSrc: poultryDarkSrc,
     activeIconSrc: poultrySrc,
     text: 'Poultry',
     active: false,
+    path: '/',
   },
   {
     iconSrc: produceDarkSrc,
     activeIconSrc: produceSrc,
     text: 'Produce',
     active: false,
+    path: '/',
   },
   {
     iconSrc: wineDarkSrc,
     activeIconSrc: wineSrc,
     text: 'Wine',
     active: false,
+    path: '/',
   },
 ];
 

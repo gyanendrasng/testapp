@@ -1,21 +1,15 @@
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { Box, Typography } from '@mui/material';
 import * as React from 'react';
-import { useContext } from 'react';
-import { AppContext } from '../../context/AppContext';
 type Props = {
-  totalItem: string;
-  totalPrice: string;
+  totalItem: number;
+  totalPrice: number;
 };
 
 const CartFooter: React.FunctionComponent<Props> = ({
   totalItem,
   totalPrice,
 }) => {
-  const {
-    state: { isOpenCartDrawer },
-    dispatch,
-  } = useContext(AppContext);
   return (
     <Box bgcolor="var(--white)" borderTop="1px solid var(--border)">
       <Box
@@ -30,7 +24,7 @@ const CartFooter: React.FunctionComponent<Props> = ({
             ({totalItem || 0})
           </Typography>
         </Typography>
-        <Typography variant="h5">{totalPrice || 0}</Typography>
+        <Typography variant="h5">${totalPrice?.toFixed(2) || 0}</Typography>
       </Box>
       <Box
         display="flex"
@@ -41,6 +35,7 @@ const CartFooter: React.FunctionComponent<Props> = ({
         color="var(--white)"
         px="0.5rem"
         py="1.5rem"
+        sx={{ cursor: 'pointer' }}
       >
         <Box fontSize="2rem">
           <ShoppingBasketIcon color="inherit" fontSize="inherit" />

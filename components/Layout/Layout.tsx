@@ -1,6 +1,7 @@
 import { Box, useMediaQuery, useTheme } from '@mui/material';
 import * as React from 'react';
 import CartDrawer from '../Cart/CartDrawer';
+import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import SidebarDrawer from '../Sidebar/Drawer/Drawer';
 import Sidebar from '../Sidebar/Sidebar';
@@ -19,6 +20,7 @@ const Layout: React.FunctionComponent<Props> = ({ children }) => {
       <Box flexGrow="1">
         <Header />
         <Box>{children}</Box>
+        <Footer />
       </Box>
     </Box>
   );

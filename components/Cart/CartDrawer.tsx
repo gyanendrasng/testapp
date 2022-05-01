@@ -3,10 +3,10 @@ import * as React from 'react';
 import { useContext, useState } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { TOGGLE_CART_DRAWER } from '../../context/types';
+import useCart from '../../hooks/useCart';
 import CartFooter from './CartFooter';
 import CartHeader from './CartHeader';
 import CartProducts from './CartProducts';
-
 const CartDrawer: React.FunctionComponent<any> = () => {
   const {
     state: { isOpenCartDrawer, cartList },
@@ -15,6 +15,8 @@ const CartDrawer: React.FunctionComponent<any> = () => {
   const theme = useTheme();
   const isMD = useMediaQuery(theme.breakpoints.down('md'));
   const [isOpen, setOpen] = useState(true);
+  const { getTotalItems, getTotalAmountOfCost, getTotalProducts, getQtyById } =
+    useCart();
   const handleClickToggle: any = () => {
     setOpen((value) => !value);
   };
@@ -34,16 +36,24 @@ const CartDrawer: React.FunctionComponent<any> = () => {
           height="100%"
         >
           <Box>
-            <CartHeader isOpen={isOpen} handleClickToggle={handleClickToggle} />
+            <CartHeader
+              isOpen={isOpen}
+              handleClickToggle={handleClickToggle}
+              totalProducts={getTotalProducts()}
+              title="KINGSTON KHOSER"
+            />
             <Box>
               <Collapse in={isOpen} timeout="auto" unmountOnExit>
-                <Box maxHeight="600px" py="0.5rem" sx={{ overflowY: 'auto' }}>
+                <Box maxHeight="700px" py="0.5rem" sx={{ overflowY: 'auto' }}>
                   <CartProducts products={cartList} />
                 </Box>
               </Collapse>
             </Box>
           </Box>
-          <CartFooter />
+          <CartFooter
+            totalItem={getTotalItems()}
+            totalPrice={getTotalAmountOfCost()}
+          />
         </Box>
       </Drawer>
     </Box>

@@ -11,6 +11,7 @@ type Props = {
   description: string;
   price: number;
   image: string;
+  category: string;
 };
 const Item: React.FunctionComponent<Props> = ({
   id,
@@ -18,6 +19,7 @@ const Item: React.FunctionComponent<Props> = ({
   description,
   price,
   image,
+  category,
 }) => {
   const { cartList, addToCart, removeToCart, getQtyById } = useCart();
   const [count, setCount] = useState(0);
@@ -35,6 +37,7 @@ const Item: React.FunctionComponent<Props> = ({
       description,
       price,
       image,
+      category,
     });
   };
   const handleClickToDecrease = () => {
@@ -67,19 +70,19 @@ const Item: React.FunctionComponent<Props> = ({
           {title}
         </Typography>
         <Typography
+          variant="subtitle2"
+          component="span"
+          color="var(--text-muted)"
+          sx={{ fontWeight: 'bold' }}
+        >
+          Category : {category}
+        </Typography>
+        <Typography
           variant="h5"
           color="var(--primary)"
           sx={{ fontWeight: 'bold' }}
         >
-          {price}{' '}
-          <Typography
-            variant="subtitle1"
-            component="span"
-            color="var(--text-muted)"
-            sx={{ fontWeight: 'bold' }}
-          >
-            /lib
-          </Typography>
+          ${price}
         </Typography>
         <Typography component="span" color="var(--text-muted)">
           {getTrancateString(description, 60)}

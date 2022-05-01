@@ -18,6 +18,8 @@ type InitialStateType = {
   isOpenMenuDrawer: boolean;
   isProductsFetching: boolean;
   cartList: ProductType[];
+  dispatch: any;
+  state: any;
 };
 
 const initialState = {
@@ -27,6 +29,8 @@ const initialState = {
   isOpenCartDrawer: false,
   isOpenMenuDrawer: false,
   isProductsFetching: false,
+  dispatch: {},
+  state: {},
 };
 
 const AppContext = createContext<InitialStateType>(initialState);

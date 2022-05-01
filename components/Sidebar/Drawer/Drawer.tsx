@@ -8,6 +8,7 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
+import { useRouter } from 'next/router';
 import * as React from 'react';
 import { useContext } from 'react';
 import { AppContext } from '../../../context/AppContext';
@@ -21,7 +22,7 @@ const SidebarDrawer: React.FunctionComponent<any> = () => {
   } = useContext(AppContext);
   const theme = useTheme();
   const isMD = useMediaQuery(theme.breakpoints.down('md'));
-
+  const router = useRouter();
   return (
     <Box bgcolor="var(--white)">
       <Drawer
@@ -31,7 +32,7 @@ const SidebarDrawer: React.FunctionComponent<any> = () => {
       >
         <Box width="300px">
           <Actions />
-          <ListItemButton>
+          <ListItemButton onClick={() => router.push('/')}>
             <ListItemIcon>
               <HomeIcon />
             </ListItemIcon>

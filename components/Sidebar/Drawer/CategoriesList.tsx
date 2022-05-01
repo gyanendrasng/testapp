@@ -1,14 +1,52 @@
+import CategoryIcon from '@mui/icons-material/Category';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import StarBorder from '@mui/icons-material/StarBorder';
+import { Box } from '@mui/material';
 import Collapse from '@mui/material/Collapse';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 import * as React from 'react';
+import sidebar from '../../../data/sidebar';
+
+type Props = {
+  iconSrc: any;
+  activeIconSrc: any;
+  text: string;
+  active: boolean;
+};
+
+const CategoryItem: React.FunctionComponent<Props> = ({
+  iconSrc,
+  activeIconSrc,
+  text,
+  active,
+  path,
+}) => {
+  const router = useRouter();
+
+  return (
+    <ListItemButton
+      sx={{ pl: 4 }}
+      selected={active}
+      onClick={() => router.push(path)}
+    >
+      <Box px="0.25rem">
+        <Image
+          src={active ? activeIconSrc : iconSrc}
+          width="30px"
+          height="30px"
+          alt="icon"
+        />
+      </Box>
+      <ListItemText primary={text} />
+    </ListItemButton>
+  );
+};
 
 export default function CategoriesList() {
   const [open, setOpen] = React.useState(true);
@@ -30,19 +68,16 @@ export default function CategoriesList() {
     >
       <ListItemButton onClick={handleClick}>
         <ListItemIcon>
-          <InboxIcon />
+          <CategoryIcon />
         </ListItemIcon>
         <ListItemText primary="Categories" />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 4 }}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
-            <ListItemText primary="Starred" />
-          </ListItemButton>
+          {sidebar.map((item) => (
+            <CategoryItem {...item} key={item.text} />
+          ))}
         </List>
       </Collapse>
     </List>

@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import * as React from 'react';
 import sidebarData from '../../data/sidebar';
 import styles from './Sidebar.module.css';
@@ -8,6 +9,7 @@ type ItemProps = {
   activeIconSrc: any;
   text: string;
   active: boolean;
+  path: string;
 };
 
 const Item: React.FunctionComponent<ItemProps> = ({
@@ -15,13 +17,17 @@ const Item: React.FunctionComponent<ItemProps> = ({
   activeIconSrc,
   text,
   active,
+  path,
 }) => {
+  const router = useRouter();
+
   return (
     <Box
       className={styles.item}
       display="flex"
       alignItems="center"
       height="60px"
+      onClick={() => router.push(path)}
     >
       <Box px="1rem">
         <Image

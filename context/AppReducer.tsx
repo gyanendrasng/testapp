@@ -1,4 +1,5 @@
 /*reducers.ts*/
+import { updateLocalStorage } from '../components/lib/localStorage';
 import {
   ADD_TO_CART_LIST,
   PRODUCTS_FETCH_SUCCESS,
@@ -10,8 +11,7 @@ import {
   TOGGLE_MENU_DRAWER,
   UPDATE_CART_LIST_QTY,
 } from './types';
-
-const cartReducer = (state, action) => {
+const cartReducer = (state: any, action: any) => {
   switch (action.type) {
     case TOGGLE_CART_DRAWER:
       state = {
@@ -45,27 +45,31 @@ const cartReducer = (state, action) => {
       };
       return state;
     // Add to cart item
-    case ADD_TO_CART_LIST:
-      state = {
+    case ADD_TO_CART_LIST: {
+      const addedCartLists = [
+        ...state.cartList,
+        {
+          ...action.payload,
+          qty: 1,
+        },
+      ];
+      // To update local storage
+      updateLocalStorage(addedCartLists);
+      return {
         ...state,
-        cartList: [
-          ...state.cartList,
-          {
-            ...action.payload,
-            qty: 1,
-          },
-        ],
+        cartList: addedCartLists,
       };
-      return state;
+    }
     case REMOVE_TO_CART_LIST: {
       const updatedCartList = state.cartList.filter(
         (cartListItem: any) => cartListItem.id !== action.payload.id
       );
-      state = {
+      // To update local storage
+      updateLocalStorage(updatedCartList);
+      return {
         ...state,
         cartList: updatedCartList,
       };
-      return state;
     }
     // Increase and decrease cart list quanitity
     case UPDATE_CART_LIST_QTY:
@@ -84,12 +88,12 @@ const cartReducer = (state, action) => {
         }
         return cartListItem;
       });
-
-      state = {
+      // To update local storage
+      updateLocalStorage(updatedCartList);
+      return {
         ...state,
         cartList: updatedCartList,
       };
-      return state;
     case SYNC_CART_LIST_FROM_LOCAL_STORAGE:
       state = {
         ...state,

@@ -10,6 +10,7 @@ import {
 const useCart = () => {
   const { state, dispatch } = useContext(AppContext);
 
+  // To resnyc cart data from localstorage when page is loaded
   useEffect(() => {
     let cartListsSync = localStorage.getItem('cart-list');
     cartListsSync = cartListsSync ? JSON.parse(cartListsSync) : [];
@@ -20,6 +21,7 @@ const useCart = () => {
     });
   }, []);
 
+  // Get individual quantity of product
   const getQtyById: any = (id: number) => {
     const cartItem = state.cartList.find(
       (cartListItem: any) => cartListItem.id === id
@@ -34,7 +36,27 @@ const useCart = () => {
     }
     return 0;
   };
-
+  // Get Total Items
+  const getTotalItems = () => {
+    let totalItems = 0;
+    state.cartList.forEach((cartListItem: any) => {
+      totalItems += cartListItem.qty;
+    });
+    return totalItems;
+  };
+  // Get total products
+  const getTotalProducts = () => {
+    return state.cartList.length;
+  };
+  // Get total product items amount of cost
+  const getTotalAmountOfCost = () => {
+    let totalCost = 0;
+    state.cartList.forEach((cartListItem: any) => {
+      totalCost += cartListItem.qty * cartListItem.price;
+    });
+    return totalCost;
+  };
+  // Product add to cart
   const addToCart: any = (product: any) => {
     const qty = getQtyById(product.id);
     if (!qty || qty === 0) {
@@ -46,6 +68,7 @@ const useCart = () => {
       increasedQtyById(product.id);
     }
   };
+  // Product remove from add to cart
   const removeToCart: any = (id: number) => {
     const qty = getQtyById(id);
     if (!qty) {
@@ -62,6 +85,7 @@ const useCart = () => {
       decreasedQtyById(id);
     }
   };
+  // Quanity increase by id
   const increasedQtyById: any = (id: number) => {
     dispatch({
       type: UPDATE_CART_LIST_QTY,
@@ -71,6 +95,7 @@ const useCart = () => {
       },
     });
   };
+  // Quantity descrease by id
   const decreasedQtyById: any = (id: number) => {
     dispatch({
       type: UPDATE_CART_LIST_QTY,
@@ -80,9 +105,13 @@ const useCart = () => {
       },
     });
   };
+
   return {
     cartList: state.cartList,
     getQtyById,
+    getTotalItems,
+    getTotalProducts,
+    getTotalAmountOfCost,
     addToCart,
     removeToCart,
     increasedQtyById,

@@ -1,15 +1,16 @@
 import { Box, Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
 import * as React from 'react';
-import { useState } from 'react';
+import useCart from '../../hooks/useCart';
 import Actions from '../Products/Actions';
 import styles from './Cart.module.css';
-
 type Props = {
   id: number;
   title: string;
   description: string;
   price: number;
-  img: string;
+  image: string;
+  qty: number;
+  category: string;
 };
 
 const CartProductItem: React.FunctionComponent<Props> = ({
@@ -18,17 +19,25 @@ const CartProductItem: React.FunctionComponent<Props> = ({
   description,
   price,
   image,
+  qty,
+  category,
 }) => {
   const theme = useTheme();
   const isMD = useMediaQuery(theme.breakpoints.down('md'));
-  const [count, setCount] = useState(1);
+  const { addToCart, removeToCart, getQtyById } = useCart();
   const handleClickToIncrease = () => {
-    setCount((value) => value + 1);
+    addToCart({
+      id,
+      title,
+      description,
+      price,
+      image,
+      qty,
+      category,
+    });
   };
   const handleClickToDecrease = () => {
-    if (count !== 0) {
-      setCount((value) => value - 1);
-    }
+    removeToCart(id);
   };
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
@@ -62,26 +71,26 @@ const CartProductItem: React.FunctionComponent<Props> = ({
                 color="var(--text-muted)"
                 sx={{ fontWeight: 'bold' }}
               >
-                Category :lib
+                Category : {category}
               </Typography>
               <Box height="0.5rem" />
 
               <Actions
-                count={count}
+                count={getQtyById(id)}
                 handleClickToIncrease={handleClickToIncrease}
                 handleClickToDecrease={handleClickToDecrease}
               />
             </Box>
           </Box>
-          <Box>
+          <Box minWidth="100px">
             <Typography
               variant="h5"
               color="var(--primary)"
               sx={{ fontWeight: 'bold' }}
             >
-              $ {price}
+              ${price}
               <Typography variant="subtitle2" color="text.secondarygi">
-                Est : 1.20 IB
+                Total - ${(price * qty).toFixed(2)}
               </Typography>
             </Typography>
           </Box>

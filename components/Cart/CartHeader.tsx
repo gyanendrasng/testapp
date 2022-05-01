@@ -7,10 +7,14 @@ import smallLogoSrc from '../../assets/logo-small.png';
 type Props = {
   isOpen: boolean;
   handleClickToggle: () => void;
+  totalProducts: number;
+  title: string;
 };
 
 const CartHeader: React.FunctionComponent<Props> = ({
   isOpen,
+  totalProducts,
+  title,
   handleClickToggle,
 }) => {
   return (
@@ -29,10 +33,10 @@ const CartHeader: React.FunctionComponent<Props> = ({
         </Box>
         <Box>
           <Typography variant="h6" color="var(--primary)">
-            Title
+            {title}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary">
-            1 Product Title
+            {totalProducts} Products
           </Typography>
         </Box>
       </Box>
