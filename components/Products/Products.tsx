@@ -5,12 +5,10 @@ import { AppContext } from '../../context/AppContext';
 import Container from '../Container/Container';
 import Item from './Item';
 import ItemSkeleton from './ItemSekeleton';
-import Product from './Product.interface';
 import styles from './Product.module.css';
 type Props = {
   title: string;
   subTitle: string;
-  products: Product[];
 };
 
 const Products: React.FunctionComponent<Props> = ({ title, subTitle }) => {
@@ -44,7 +42,7 @@ const Products: React.FunctionComponent<Props> = ({ title, subTitle }) => {
             )}
 
             {!isProductsFetching &&
-              products.map((item) => <Item {...item} key={item.id} />)}
+              products.map((item: any) => <Item {...item} key={item.id} />)}
           </Box>
         </Box>
       </Container>

@@ -9,6 +9,8 @@ type ProductType = {
   description: string;
   price: number;
   img: string;
+  qty: number;
+  category: string;
 };
 
 type InitialStateType = {

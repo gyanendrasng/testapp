@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material';
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useCart from '../../hooks/useCart';
 import getTrancateString from '../lib/getTrancateString';
 import Actions from './Actions';
@@ -21,13 +21,8 @@ const Item: React.FunctionComponent<Props> = ({
   image,
   category,
 }) => {
-  const { cartList, addToCart, removeToCart, getQtyById } = useCart();
+  const { addToCart, removeToCart, getQtyById } = useCart();
   const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    console.log({ cartList });
-    console.log('My Qty', getQtyById(id));
-  }, [cartList]);
 
   const handleClickToIncrease = () => {
     setCount((value) => value + 1);

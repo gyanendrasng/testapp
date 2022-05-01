@@ -4,6 +4,8 @@ interface Product {
   description: string;
   price: number;
   image: string;
+  qty: number;
+  category: string;
 }
 
 export default Product;

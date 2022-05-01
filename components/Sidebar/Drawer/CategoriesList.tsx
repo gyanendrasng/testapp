@@ -18,6 +18,7 @@ type Props = {
   activeIconSrc: any;
   text: string;
   active: boolean;
+  path: string;
 };
 
 const CategoryItem: React.FunctionComponent<Props> = ({
